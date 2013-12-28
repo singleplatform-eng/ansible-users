@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/CraigJPerry/ansible-users.png?branch=add-ansible-testing)](https://travis-ci.org/CraigJPerry/ansible-users)
+[![Build Status](https://travis-ci.org/CraigJPerry/ansible-users.png)](https://travis-ci.org/CraigJPerry/ansible-users)
 
 # Users role
 
