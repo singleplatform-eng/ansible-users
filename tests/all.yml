@@ -1,0 +1,6 @@
+---
+
+# All users role tests
+
+- include: add_user.yml
+
