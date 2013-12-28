@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/CraigJPerry/ansible-users.png)](https://travis-ci.org/CraigJPerry/ansible-users)
+
 # Users role
 
 Role to manage users on a system.
