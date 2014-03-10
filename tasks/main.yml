@@ -3,6 +3,7 @@
   group: name="{{item.username}}" gid="{{item.uid}}"
   with_items: users
   when: users_create_per_user_group
+  tags: ['users','configuration']
 
 - name: User creation
   user: name="{{item.username}}"
@@ -14,18 +15,22 @@
         uid="{{item.uid}}"
         createhome="{{'yes' if users_create_homedirs else 'no'}}"
   with_items: users
+  tags: ['users','configuration']
 
 - name: SSH keys
   authorized_key: user="{{item.0.username}}" key="{{item.1}}"
   with_subelements:
     - users
     - ssh_key
+  tags: ['users','configuration']
 
 - name: Deleted user removal
   user: name="{{item.username}}" state=absent
   with_items: users_deleted
+  tags: ['users','configuration']
 
 - name: Deleted per-user group removal
   group: name="{{item.username}}" state=absent
   with_items: users_deleted
   when: users_create_per_user_group
+  tags: ['users','configuration']
