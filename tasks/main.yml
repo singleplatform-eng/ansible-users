@@ -1,31 +1,33 @@
 ---
 - name: Per-user group creation
-  group: name="{{item.username}}" gid="{{item.uid}}"
+  group: name={{ item.username }} gid={{ item.uid }}
   with_items: users
   when: users_create_per_user_group
 
 - name: User creation
-  user: name="{{item.username}}"
-        group="{{item.username if users_create_per_user_group
-            else users_group}}"
-        groups="{{item.groups | join(',')}}"
-        shell={{item.shell if item.shell is defined else users_default_shell}}
-        comment="{{item.name}}"
-        uid="{{item.uid}}"
-        createhome="{{'yes' if users_create_homedirs else 'no'}}"
+  user: name={{ item.username }}
+        group={{ item.username if users_create_per_user_group
+          else users_group }}
+        groups={{ item.groups | join(',') }}
+        shell={{ item.shell if item.shell is defined else users_default_shell }}
+        password={{ item.password if item.password is defined }}
+        comment={{ item.name }}
+        uid={{ item.uid }}
+        createhome={{ 'yes' if users_create_homedirs else 'no' }}
   with_items: users
 
 - name: SSH keys
-  authorized_key: user="{{item.0.username}}" key="{{item.1}}"
+  authorized_key: user={{ item.0.username }} key={{ item.1 }}
   with_subelements:
     - users
     - ssh_key
+  when: ssh_key is defined
 
 - name: Deleted user removal
-  user: name="{{item.username}}" state=absent
+  user: name={{ item.username }} state=absent
   with_items: users_deleted
 
 - name: Deleted per-user group removal
-  group: name="{{item.username}}" state=absent
+  group: name={{ item.username }} state=absent
   with_items: users_deleted
   when: users_create_per_user_group
