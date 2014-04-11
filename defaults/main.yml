@@ -13,6 +13,7 @@ users_create_homedirs: true
 # Lists of users to create and delete
 users: []
 users_deleted: []
+users_revoked_ssh_key: []
 
 # Generate random root password
 users_root_random_password: false
