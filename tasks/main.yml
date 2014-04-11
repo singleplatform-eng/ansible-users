@@ -1,11 +1,15 @@
 ---
 - name: Per-user group creation
-  group: name="{{item.username}}" gid="{{item.uid}}"
+  group: >
+    name="{{item.username}}" 
+    gid="{{item.uid}}"
   with_items: users
   when: users_create_per_user_group
+  tags: ['users','configuration']
 
 - name: User creation
-  user: name="{{item.username}}"
+  user: >
+        name="{{item.username}}"
         group="{{item.username if users_create_per_user_group
             else users_group}}"
         groups="{{item.groups | join(',')}}"
@@ -14,18 +18,46 @@
         uid="{{item.uid}}"
         createhome="{{'yes' if users_create_homedirs else 'no'}}"
   with_items: users
+  tags: ['users','configuration']
 
 - name: SSH keys
-  authorized_key: user="{{item.0.username}}" key="{{item.1}}"
+  authorized_key: >
+    user="{{item.0.username}}" 
+    key="{{item.1}}"
   with_subelements:
     - users
     - ssh_key
+  tags: ['users','configuration']
+
+- name: Remove revoked SSH keys
+  authorized_key: >
+    user="{{item.0.username}}" 
+    key="{{item.1}}"
+    state="absent"
+  with_nested:
+    - users
+    - users_revoked_ssh_key
+  tags: ['users','configuration']
 
 - name: Deleted user removal
-  user: name="{{item.username}}" state=absent
+  user: >
+    name="{{item.username}}" 
+    state=absent
   with_items: users_deleted
+  tags: ['users','configuration']
 
 - name: Deleted per-user group removal
-  group: name="{{item.username}}" state=absent
+  group: >
+    name="{{item.username}}" 
+    state=absent
   with_items: users_deleted
   when: users_create_per_user_group
+  tags: ['users','configuration']
+
+- name: Generate root random password
+  user: >
+        name=root
+        uid=0
+        password={{ lookup('password', users_root_password_file+' chars='+users_root_password_chars+' encrypt='+users_root_password_encrypt+' length='+users_root_password_length) }}
+  when: users_root_random_password
+  tags: ['users','configuration']
