@@ -25,12 +25,16 @@ users to be on certain machines.
 The following attributes are required for each user:
 
 * username - The user's username.
+* password - The user's encrypted password string. See [FAQ](http://docs.ansible.com/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module) for help on generating these strings.
 * name - The full name of the user (gecos field)
 * uid - The numeric user id for the user. This is required for uid consistency
   across systems.
 * groups - a list of supplementary groups for the user.
 * ssh-key - This should be a list of ssh keys for the user. Each ssh key
   should be included directly and should have no newlines.
+
+ssh-key can be a blank array, i.e. just `[]` if you don't have a key for the
+user.
 
 In addition, the following items are optional for each user:
 
@@ -44,6 +48,7 @@ Example:
     users:
       - username: foo
         name: Foo Barrington
+        password: $1$PRh2g1$jBpcreIotRhkDKtX/ziZN1
         groups: ['wheel','systemd-journal']
         uid: 1001
         ssh_key:
