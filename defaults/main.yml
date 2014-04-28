@@ -13,3 +13,13 @@ users_create_homedirs: true
 # Lists of users to create and delete
 users: []
 users_deleted: []
+
+# Generate random root password
+users_root_random_password: false
+users_root_password_file: "{{inventory_dir}}/passwords/{{ansible_hostname}}/rootpassword"
+# Encrypt : Can be None, sha256crypt or sha512_crypt
+users_root_password_encrypt: "sha512_crypt"
+# Chars : list of type of chars in the generated password
+users_root_password_chars: "ascii,numbers,digits,hexdigits,punctuation"
+# Password length
+users_root_password_length: "20"
