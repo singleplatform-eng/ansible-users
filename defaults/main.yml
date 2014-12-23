@@ -13,3 +13,4 @@ users_create_homedirs: true
 # Lists of users to create and delete
 users: []
 users_deleted: []
+groups: []
