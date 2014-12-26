@@ -1,4 +1,9 @@
 ---
+- name: Creating groups
+  group: name="{{item}}"
+  with_items: groups_to_create
+  tags: ['users','groups','configuration']
+
 - name: Per-user group creation
   group: name="{{item.username}}" gid="{{item.uid}}"
   with_items: users
