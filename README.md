@@ -28,6 +28,8 @@ The following attributes are required for each user:
 * name - The full name of the user (gecos field)
 * uid - The numeric user id for the user. This is required for uid consistency
   across systems.
+* password - If a hash is provided then that will be used, but otherwise the
+  account will be locked
 * groups - a list of supplementary groups for the user.
 * ssh-key - This should be a list of ssh keys for the user. Each ssh key
   should be included directly and should have no newlines.
