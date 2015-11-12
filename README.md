@@ -28,6 +28,8 @@ The following attributes are required for each user:
 * name - The full name of the user (gecos field)
 * uid - The numeric user id for the user. This is required for uid consistency
   across systems.
+* gid - The numeric group id for the group (optional). Otherwise, the
+  uid will be used
 * password - If a hash is provided then that will be used, but otherwise the
   account will be locked
 * groups - a list of supplementary groups for the user.
