@@ -39,6 +39,8 @@ In addition, the following items are optional for each user:
 * shell - The user's shell. This defaults to /bin/bash. The default is
   configurable using the users_default_shell variable if you want to give all
   users the same shell, but it is different than /bin/bash.
+* gid - You can specify this option for a user if you do not want their primary
+  group id to be the same as their user id.
 
 Example:
 
