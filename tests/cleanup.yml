@@ -6,3 +6,8 @@
 - name: Cleanup | Remove ansibletestuser home dir
   file: state="absent" path="/home/ansibletestuser"
 
+- name: Cleanup | Remove ansibletestuser
+  user: state="absent" name="ansibletestuser2"
+
+- name: Cleanup | Remove ansibletestuser home dir
+  file: state="absent" path="/home/ansibletestuser2"
