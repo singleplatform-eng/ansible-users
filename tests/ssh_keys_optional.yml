@@ -28,7 +28,7 @@
 
 # Test run
   roles:
-    - { role: users }
+    - { role: ../../ansible-users }
 
 # Test verify successful
   tasks:
