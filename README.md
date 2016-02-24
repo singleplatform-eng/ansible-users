@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mivok/ansible-users.png)](https://travis-ci.org/mivok/ansible-users)
+[![Build Status](https://travis-ci.org/trumant/ansible-users.png)](https://travis-ci.org/trumant/ansible-users)
 
 # Users role
 
