@@ -1,4 +1,19 @@
 ---
+- name: Deleted user removal
+  user:
+    name: "{{ item.username }}"
+    state: absent
+  with_items: users_deleted
+  tags: ['users','configuration']
+
+- name: Deleted per-user group removal
+  group:
+    name: "{{ item.username }}"
+    state: absent
+  with_items: users_deleted
+  when: users_create_per_user_group
+  tags: ['users','configuration']
+
 - name: Creating groups
   group:
     name: "{{item}}"
@@ -33,19 +48,4 @@
   with_subelements:
     - users
     - ssh_key
-  tags: ['users','configuration']
-
-- name: Deleted user removal
-  user:
-    name: "{{ item.username }}"
-    state: absent
-  with_items: users_deleted
-  tags: ['users','configuration']
-
-- name: Deleted per-user group removal
-  group:
-    name: "{{ item.username }}"
-    state: absent
-  with_items: users_deleted
-  when: users_create_per_user_group
   tags: ['users','configuration']
