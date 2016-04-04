@@ -10,6 +10,8 @@ users_default_shell: /bin/bash
 # directories in some other way.
 users_create_homedirs: true
 
+users_always_update_passwd: false 
+
 # Lists of users to create and delete
 users: []
 users_deleted: []

@@ -20,6 +20,7 @@
         comment="{{item.name}}"
         uid="{{item.uid}}"
         createhome="{{'yes' if users_create_homedirs else 'no'}}"
+        update_password="{{'always' if users_always_update_passwd else 'on_create'}}"
   with_items: users
   tags: ['users','configuration']
 
