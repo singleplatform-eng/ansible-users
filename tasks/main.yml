@@ -25,7 +25,7 @@
   tags: ['users','configuration']
 
 - name: SSH keys
-  authorized_key: user="{{item.0.username}}" key="{{item.1}}"
+  authorized_key: user="{{item.0.username}}" key="{{item.1}}" key_options="{{ options_tunnel_only if item.0.tunnel_only is defined else '' }}" 
   with_subelements:
     - users
     - ssh_key

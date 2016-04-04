@@ -9,10 +9,14 @@ users_default_shell: /bin/bash
 # Create home dirs for new users? Set this to false if you manage home
 # directories in some other way.
 users_create_homedirs: true
-
+# update user's password
 users_always_update_passwd: false 
 
 # Lists of users to create and delete
 users: []
 users_deleted: []
 groups_to_create: []
+
+# authorized_keys options
+# options for user which will be used for ssh tunnel only
+options_tunnel_only: 'no-agent-forwarding,no-X11-forwarding,command="read a; exit"'
