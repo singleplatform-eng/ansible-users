@@ -1,12 +1,12 @@
 ---
 - name: Creating groups
   group: name="{{item}}"
-  with_items: groups_to_create
+  with_items: '{{ groups_to_create }}'
   tags: ['users','groups','configuration']
 
 - name: Per-user group creation
   group: name="{{item.username}}" gid="{{item.uid}}"
-  with_items: users
+  with_items: '{{ users }}'
   when: users_create_per_user_group
   tags: ['users','configuration']
 
@@ -20,23 +20,23 @@
         comment="{{item.name}}"
         uid="{{item.uid}}"
         createhome="{{'yes' if users_create_homedirs else 'no'}}"
-  with_items: users
+  with_items: '{{ users }}'
   tags: ['users','configuration']
 
 - name: SSH keys
   authorized_key: user="{{item.0.username}}" key="{{item.1}}"
   with_subelements:
-    - users
+    - '{{ users }}'
     - ssh_key
   tags: ['users','configuration']
 
 - name: Deleted user removal
   user: name="{{item.username}}" state=absent
-  with_items: users_deleted
+  with_items: '{{ users_deleted }}'
   tags: ['users','configuration']
 
 - name: Deleted per-user group removal
   group: name="{{item.username}}" state=absent
-  with_items: users_deleted
+  with_items: '{{ users_deleted }}'
   when: users_create_per_user_group
   tags: ['users','configuration']
