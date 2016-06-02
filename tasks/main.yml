@@ -1,6 +1,6 @@
 ---
 - name: Creating groups
-  group: name="{{item}}"
+  group: name="{{item.name}}" gid="{{item.gid}}"
   with_items: "{{groups_to_create}}"
   tags: ['users','groups','configuration']
 
