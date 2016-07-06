@@ -38,7 +38,7 @@
     group: "{{item.username}}"
     mode: 0644
     create: true
-  when: users_create_homedirs
+  when: users_create_homedirs and item.profile is defined
   with_items: "{{users}}"
 
 - name: Deleted user removal
