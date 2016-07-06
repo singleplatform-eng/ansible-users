@@ -11,15 +11,15 @@
   tags: ['users','configuration']
 
 - name: User creation
-  user: name="{{item.username}}"
-        group="{{item.username if users_create_per_user_group
-            else users_group}}"
-        groups="{{item.groups | join(',')}}"
-        shell={{item.shell if item.shell is defined else users_default_shell}}
-        password="{{item.password if item.password is defined else '!'}}"
-        comment="{{item.name}}"
-        uid="{{item.uid}}"
-        createhome="{{'yes' if users_create_homedirs else 'no'}}"
+  user:
+    name: "{{item.username}}"
+    group: "{{item.username if users_create_per_user_group else users_group}}"
+    groups: "{{item.groups | join(',')}}"
+    shell: "{{item.shell if item.shell is defined else users_default_shell}}"
+    password: "{{item.password if item.password is defined else '!'}}"
+    comment: "{{item.name}}"
+    uid: "{{item.uid}}"
+    createhome: "{{'yes' if users_create_homedirs else 'no'}}"
   with_items: "{{users}}"
   tags: ['users','configuration']
 
@@ -29,6 +29,17 @@
     - "{{users}}"
     - ssh_key
   tags: ['users','configuration']
+
+- name: Setup user profiles
+  blockinfile:
+    block: "{{item.profile}}"
+    dest: "/home/{{item.username}}/.profile"
+    owner: "{{item.username}}"
+    group: "{{item.username}}"
+    mode: 0644
+    create: true
+  when: users_create_homedirs
+  with_items: "{{users}}"
 
 - name: Deleted user removal
   user: name="{{item.username}}" state=absent
