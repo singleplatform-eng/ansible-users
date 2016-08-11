@@ -3,7 +3,7 @@
 # It should add a user when given valid metadata
 
 - hosts: test_runners
-  sudo: yes
+  remote_user: root
 
 # Test fixture data
   vars:
@@ -40,7 +40,7 @@
     - name: Add Users Test | Post-Assertions | Ensure ansibletestuser home dir was created
       command: "ls -d /home/ansibletestuser"
     - name: Add Users Test | Post-Assertions | Ensure ssh key was added
-      command: "sudo grep '{{ users[0].ssh_key[0] }}' /home/ansibletestuser/.ssh/authorized_keys"
+      command: "grep '{{ users[0].ssh_key[0] }}' /home/ansibletestuser/.ssh/authorized_keys"
     - name: Add Users Test | Post-Assertions | Ensure group was added
       command: "grep 2222 /etc/group"
     - name: Add Users Test |  Post-Assertions | Ensure user was added to requested groups

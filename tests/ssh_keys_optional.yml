@@ -3,7 +3,7 @@
 # SSH keys should not be required
 
 - hosts: test_runners
-  sudo: yes
+  remote_user: root
 
 # Test fixture data
   vars:
@@ -35,7 +35,7 @@
     - name: SSH Keys Optional Test | Post-Assertions | Ensure ansibletestuser was created
       command: "grep ansibletestuser /etc/passwd"
     - name: SSH Keys Optional Test | Post-Assertions | Ensure no ssh key was added
-      command: "sudo ls /home/ansibletestuser/.ssh/authorized_keys"
+      command: "ls /home/ansibletestuser/.ssh/authorized_keys"
       register: ensure_ssh_key_not_present
       failed_when: ensure_ssh_key_not_present.rc == 0
 
