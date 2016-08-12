@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/singleplatform-eng/ansible-users.svg?branch=master)](https://travis-ci.org/mivok/ansible-users)
+[![Build Status](https://travis-ci.org/singleplatform-eng/ansible-users.svg?branch=master)](https://travis-ci.org/singleplatform-eng/ansible-users)
 
 # Users role
 
