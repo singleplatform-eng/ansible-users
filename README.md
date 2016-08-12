@@ -4,6 +4,8 @@
 
 Role to manage users on a system.
 
+Note: This is a fork from [this](https://github.com/mivok/ansible-users) role with some modifications.
+
 ## Role configuration
 
 * users_create_per_user_group (default: true) - when creating users, also
