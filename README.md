@@ -4,7 +4,7 @@
 
 Role to manage users on a system.
 
-Note: This is a fork from [this role](https://github.com/mivok/ansible-users) with some modifications.
+Note: This is a fork of [this role](https://github.com/mivok/ansible-users) with some modifications.
 
 ## Role configuration
 
