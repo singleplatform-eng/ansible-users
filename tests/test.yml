@@ -1,0 +1,19 @@
+---
+
+- hosts: localhost
+  remote_user: root
+  vars:
+    users:
+      - name: Ansible Test User
+        username: ansibletestuser
+        uid: 2222
+        groups: [users, bin]
+        shell: /bin/sh
+        profile: |
+          alias ll='ls -lah'
+          alias cp='cp -iv'
+        ssh_key:
+          - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVpUJQCOaPg3p5xro9e+1fkGRWNOGrrExiKMqTE91Fwu349bxfMnMzRS0PAERouR9EEL+Ee4Yzhav/uNc35eCtXzACtluXnAncMrQj6pM3IqASynhvXTygHljmcMbBSDQtLrTZeW+YzIcOgk5UM1yBi26WoUYva2aCr9IRvKdYreAK08OiMdZedpOye0ZdvIYJGcyITwc6YMmrAhP7jZlrk/mDEkf2a4eBp+475o7MJtaC9npqYkToM8vqvx5AGEKqXt7/f1/paOY7KsR+VGPQy6k2RkXjWBsXPesZ3d3XLZHE60wAk0EsuJO8A25+uWSB6ILQeRSYYmGea/WIf6kd noone@throwaway.example.com"
+
+  roles:
+    - ansible-users
