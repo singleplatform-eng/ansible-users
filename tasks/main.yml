@@ -7,7 +7,6 @@
 - name: Per-user group creation
   group: name="{{item.username}}"
          gid="{{item.gid if item.gid is defined else item.uid}}"
-  with_items: users
   with_items: "{{users}}"
   when: users_create_per_user_group
   tags: ['users','configuration']
