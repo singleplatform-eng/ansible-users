@@ -58,6 +58,18 @@ Example:
         name: Bar User
         uid: 1002
 
+## Creating users for SSH tunnel
+Sometimes we need to create user which will be used for ssh tunnels only. In this case add option 'tunnel_only' to user arguments, like this:
+
+    users:
+      - username: foo-tun
+        name: Foo Tunnel
+        groups: []
+        uid: 1234
+        tunnel_only: True
+        ssh_key:
+          - "ssh-rsa AAAAA.... foo@machine"
+
 ## Deleting users
 
 The `users_deleted` variable contains a list of users who should no longer be
