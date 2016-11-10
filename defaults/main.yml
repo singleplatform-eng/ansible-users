@@ -13,10 +13,4 @@ users_create_homedirs: true
 # Lists of users to create and delete
 users: []
 users_deleted: []
-
-# List of groups to create
-# Example:
-#   groups_to_create:
-#     - name: developers
-#       gid: 10000
 groups_to_create: []

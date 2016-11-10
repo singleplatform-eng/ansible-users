@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/singleplatform-eng/ansible-users.svg?branch=master)](https://travis-ci.org/singleplatform-eng/ansible-users)
+[![Build Status](https://travis-ci.org/mivok/ansible-users.png)](https://travis-ci.org/mivok/ansible-users)
 
-# ansible-users
+# Users role
 
 Role to manage users on a system.
 
@@ -31,7 +31,6 @@ The following attributes are required for each user:
 * password - If a hash is provided then that will be used, but otherwise the
   account will be locked
 * groups - a list of supplementary groups for the user.
-* profile - a string block for setting custom shell profiles
 * ssh-key - This should be a list of ssh keys for the user. Each ssh key
   should be included directly and should have no newlines.
 
@@ -49,14 +48,9 @@ Example:
         name: Foo Barrington
         groups: ['wheel','systemd-journal']
         uid: 1001
-        profile: |
-          alias ll='ls -lah'
         ssh_key:
           - "ssh-rsa AAAAA.... foo@machine"
           - "ssh-rsa AAAAB.... foo2@machine"
-    groups_to_create:
-      - name: developers
-        gid: 10000
     users_deleted:
       - username: bar
         name: Bar User
