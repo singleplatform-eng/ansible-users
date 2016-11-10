@@ -1,7 +1,0 @@
----
-
-# All users role tests
-
-- include: add_user.yml
-- include: ssh_keys_optional.yml
-
