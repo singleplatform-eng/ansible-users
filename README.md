@@ -26,6 +26,7 @@ The following attributes are required for each user:
 
 * username - The user's username.
 * name - The full name of the user (gecos field)
+* home - the home directory of the user to create (optional, defaults to /home/username)
 * uid - The numeric user id for the user. This is required for uid consistency
   across systems.
 * gid - The numeric group id for the group (optional). Otherwise, the
@@ -51,6 +52,7 @@ Example:
         name: Foo Barrington
         groups: ['wheel','systemd-journal']
         uid: 1001
+        home: /local/home/foo
         profile: |
           alias ll='ls -lah'
         ssh_key:
