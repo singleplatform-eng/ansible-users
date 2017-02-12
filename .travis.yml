@@ -39,8 +39,8 @@ script:
   - id ansibletestuser2 | grep --silent "uid=2223(ansibletestuser2) gid=2223(ansibletestuser2) groups=2223(ansibletestuser2),2(bin),100(users)"
   - id ansibletestuser3
   - id ansibletestuser4
-  - grep --silent "^$ansibletestgroup:"  /etc/group
-  - grep --silent "^$ansibletestgroup2:" /etc/group
+  - grep --silent "^ansibletestgroup:"  /etc/group
+  - grep --silent "^ansibletestgroup1:" /etc/group
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
