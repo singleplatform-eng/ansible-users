@@ -29,8 +29,9 @@ The following attributes are required for each user:
 * home - the home directory of the user to create (optional, defaults to /home/username)
 * uid - The numeric user id for the user. This is required for uid consistency
   across systems.
-* gid - The numeric group id for the group (optional). Otherwise, the
-  uid will be used
+* group - The name of the the group (optional). Otherwise if users_create_per_user_group is true, 
+  the group created for the user will be used, 
+  if users_create_per_user_group is false the system default will be used.
 * password - If a hash is provided then that will be used, but otherwise the
   account will be locked
 * groups - a list of supplementary groups for the user.
