@@ -44,6 +44,7 @@
   remote_user: root
   vars:
     users_create_per_user_group: false
+    users_group: users
     groups_to_create:
       - name: ansibletestgroup1
         gid: 4001
@@ -67,11 +68,11 @@
   remote_user: root
   vars:
     users_create_per_user_group: false
+    users_group: users
     users:
       - name: Ansible Test User4
         username: ansibletestuser4
         uid: 2225
-        group: ansibletestgroup1
         groups: [users, bin]
         shell: /bin/sh
         home: /home/otherdirectory
