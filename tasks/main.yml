@@ -37,7 +37,7 @@
     password: "{{item.password if item.password is defined else '!'}}"
     comment: "{{item.name if item.name is defined else ''}}"
     uid: "{{item.uid}}"
-    group: "{item.group}}"
+    group: "{{item.group}}"
     home: "{{ item.home | default('/home/' + item.username) }}"
     createhome: "{{'yes' if users_create_homedirs else 'no'}}"
   with_items: "{{users}}"
