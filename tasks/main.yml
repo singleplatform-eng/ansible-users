@@ -14,7 +14,11 @@
 - name: User creation
   user:
     name: "{{item.username}}"
-    group: "{{item.username if users_create_per_user_group else item.group if item.group != "" else users_group }}"
+    {% if item.group %}
+    group: "{{item.group}}"
+    {% else %}
+    group: "{{item.username if users_create_per_user_group else users_group }}"
+    {% end %}
     # empty string removes user from all secondary groups
     groups: "{{item.groups | join(',') if 'groups' in item else ''}}"
     shell: "{{item.shell if item.shell is defined else users_default_shell}}"
@@ -41,7 +45,11 @@
     block: "{{item.profile}}"
     dest: "{{ item.home | default('/home/' + item.username) }}/.profile"
     owner: "{{item.username}}"
-    group: "{{item.username if users_create_per_user_group else item.group if item.group != "" else users_group }}"
+    {% if item.group %}
+    group: "{{item.group}}"
+    {% else %}
+    group: "{{item.username if users_create_per_user_group else users_group }}"
+    {% end %}
     mode: 0644
     create: true
   when: users_create_homedirs and item.profile is defined
