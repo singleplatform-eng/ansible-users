@@ -62,7 +62,18 @@
     group: "{{item.username}}"
     mode: 0644
     create: true
-  when: users_create_homedirs and item.profile is defined
+  when: users_create_homedirs and item.profile is defined and users_create_per_user_group
+  with_items: "{{users}}"
+
+- name: Setup user profiles
+  blockinfile:
+    block: "{{item.profile}}"
+    dest: "{{ item.home | default('/home/' + item.username) }}/.profile"
+    owner: "{{item.username}}"
+    group: "{{item.group}}"
+    mode: 0644
+    create: true
+  when: users_create_homedirs and item.profile is defined and not users_create_per_user_group
   with_items: "{{users}}"
 
 - name: Deleted user removal
