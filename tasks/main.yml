@@ -59,7 +59,7 @@
     block: "{{item.profile}}"
     dest: "{{ item.home | default('/home/' + item.username) }}/.profile"
     owner: "{{item.username}}"
-    group: "{{users_create_per_user_group ? item.username : item.group }}"
+    group: "{{item.username if users_create_per_user_group else item.group }}"
     mode: 0644
     create: true
   when: users_create_homedirs and item.profile is defined
