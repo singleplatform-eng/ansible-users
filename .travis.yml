@@ -32,7 +32,7 @@ script:
   - grep --silent "^ansibletestgroup:"  /etc/group
   - grep --silent "^ansibletestgroup1:" /etc/group
   - ls -lgd /home/ansibletestuser  | awk '{exit $3=="ansibletestuser"}'
-  - ls -lgd /home/ansibletestuser2 | awk '{exit $3=="ansibletestuser2"}'
+  - ls -lgd /home/otherdirectory   | awk '{exit $3=="ansibletestuser2"}'
   - ls -lgd /home/ansibletestuser3 | awk '{exit $3=="ansibletestgroup1"}'
   - ls -lgd /home/otherdirectory1  | awk '{exit $3=="users"}'
   - ls -lg /home/ansibletestuser/.profile  | awk '{exit $3=="ansibletestuser"}'
