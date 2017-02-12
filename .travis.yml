@@ -33,6 +33,14 @@ script:
   - id ansibletestuser4 | grep --silent "uid=2225(ansibletestuser4) gid=4001(ansibletestgroup1) groups=4001(ansibletestgroup1),2(bin),100(users)"
   - grep --silent "^ansibletestgroup:"  /etc/group
   - grep --silent "^ansibletestgroup1:" /etc/group
+  - ls -lgd /home/ansibletestuser  | awk '{exit $3="ansibletestuser"}'
+  - ls -lgd /home/ansibletestuser2 | awk '{exit $3="ansibletestuser2"}'
+  - ls -lgd /home/ansibletestuser3 | awk '{exit $3="ansibletestgroup1"}'
+  - ls -lgd /home/ansibletestuser4 | awk '{exit $3="ansibletestgroup1"}'
+  - ls -lg /home/ansibletestuser/.profile  | awk '{exit $3="ansibletestuser"}'
+  - ls -lg /home/ansibletestuser2/.profile | awk '{exit $3="ansibletestuser2"}'
+  - ls -lg /home/ansibletestuser3/.profile | awk '{exit $3="ansibletestgroup1"}'
+  - ls -lg /home/ansibletestuser4/.profile | awk '{exit $3="ansibletestgroup1"}'
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
