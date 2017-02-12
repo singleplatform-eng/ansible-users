@@ -33,5 +33,12 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
+  # Lets check on the state of the users. I would invoke severspec myself however
+  # its a big thing to bring in on a small pull.
+  - id ansibletestuser 
+  - id ansibletestuser2
+  - id ansibletestuser3
+  - id ansibletestuser4
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
