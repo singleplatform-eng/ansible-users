@@ -11,7 +11,7 @@
       - name: Ansible Test User3
         username: ansibletestuser3
         uid: 2224
-        group: 4001
+        group: ansibletestgroup1
         groups: [users, bin]
         shell: /bin/sh
         profile: |
@@ -30,7 +30,7 @@
       - name: Ansible Test User4
         username: ansibletestuser4
         uid: 2225
-        group: 4001
+        group: ansibletestgroup1
         groups: [users, bin]
         shell: /bin/sh
         home: /home/otherdirectory
