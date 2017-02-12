@@ -23,5 +23,22 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
+  # Lets check on the state of the users. I would invoke severspec myself however
+  # its a big thing to bring in on a small pull.
+  - id ansibletestuser  | grep --silent "uid=2222(ansibletestuser) gid=2222(ansibletestuser) groups=2222(ansibletestuser),2(bin),100(users)"
+  - id ansibletestuser2 | grep --silent "uid=2223(ansibletestuser2) gid=2223(ansibletestuser2) groups=2223(ansibletestuser2),2(bin),100(users)"
+  - id ansibletestuser3 | grep --silent "uid=2224(ansibletestuser3) gid=4000(ansibletestgroup) groups=4000(ansibletestgroup),2(bin),100(users)"
+  - id ansibletestuser4 | grep --silent "uid=2225(ansibletestuser4) gid=100(users) groups=100(users),2(bin)"
+  - grep --silent "^ansibletestgroup:"  /etc/group
+  - grep --silent "^ansibletestgroup1:" /etc/group
+  - ls -lgd /home/ansibletestuser  | awk '{exit $3="ansibletestuser"}'
+  - ls -lgd /home/ansibletestuser2 | awk '{exit $3="ansibletestuser2"}'
+  - ls -lgd /home/ansibletestuser3 | awk '{exit $3="ansibletestgroup1"}'
+  - ls -lgd /home/ansibletestuser4 | awk '{exit $3="ansibletestgroup1"}'
+  - ls -lg /home/ansibletestuser/.profile  | awk '{exit $3="ansibletestuser"}'
+  - ls -lg /home/otherdirectory/.profile   | awk '{exit $3="ansibletestuser2"}'
+  - ls -lg /home/ansibletestuser3/.profile | awk '{exit $3="users"}'
+  - ls -lg /home/otherdirectory1/.profile  | awk '{exit $3="ansibletestgroup1"}'
+
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
