@@ -23,16 +23,6 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # Run tests/test_no_create_per_user_group.yml
-  - ansible-playbook -i localhost, --connection=local --sudo tests/test_no_create_per_user_group.yml 
-
-  # Run the role/playbook again, checking to make sure it's idempotent.
-  - >
-    ansible-playbook -i localhost, --connection=local --sudo tests/test_no_create_per_user_group.yml 
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
-
   # Lets check on the state of the users. I would invoke severspec myself however
   # its a big thing to bring in on a small pull.
   - id ansibletestuser  | grep --silent "uid=2222(ansibletestuser) gid=2222(ansibletestuser) groups=2222(ansibletestuser),2(bin),100(users)"
