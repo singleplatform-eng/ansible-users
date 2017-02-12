@@ -31,7 +31,7 @@ script:
   - id ansibletestuser4 | grep --silent "uid=2225(ansibletestuser4) gid=100(users) groups=100(users),2(bin)"
   - grep --silent "^ansibletestgroup:"  /etc/group
   - grep --silent "^ansibletestgroup1:" /etc/group
-  - find /home -ls
+  - find /home -ls | grep -v /home/travis
   - ls -lgd /home/ansibletestuser  | awk '{exit $3=="ansibletestuser"}'
   - ls -lgd /home/otherdirectory   | awk '{exit $3=="ansibletestuser2"}'
   - ls -lgd /home/ansibletestuser3 | awk '{exit $3=="ansibletestgroup"}'
