@@ -4,9 +4,9 @@
   remote_user: root
   vars:
     users:
-      - name: Ansible Test User
-        username: ansibletestuser
-        uid: 2222
+      - name: Ansible Test User3
+        username: ansibletestuser3
+        uid: 2224
         groups: [users, bin]
         shell: /bin/sh
         profile: |
@@ -22,9 +22,9 @@
   remote_user: root
   vars:
     users:
-      - name: Ansible Test User2
-        username: ansibletestuser2
-        uid: 2223
+      - name: Ansible Test User4
+        username: ansibletestuser4
+        uid: 2225
         groups: [users, bin]
         shell: /bin/sh
         home: /home/otherdirectory
