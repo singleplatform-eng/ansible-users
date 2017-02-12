@@ -29,6 +29,7 @@
       - name: Ansible Test User4
         username: ansibletestuser4
         uid: 2225
+        group: 4001
         groups: [users, bin]
         shell: /bin/sh
         home: /home/otherdirectory
