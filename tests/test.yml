@@ -3,6 +3,9 @@
 - hosts: localhost
   remote_user: root
   vars:
+    groups_to_create:
+      - name: ansibletestgroup
+        gid: 4000
     users:
       - name: Ansible Test User
         username: ansibletestuser
