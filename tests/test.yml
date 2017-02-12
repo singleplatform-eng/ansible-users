@@ -88,7 +88,7 @@
   remote_user: root
   vars:
     users_create_per_user_group: false
-    individual_users: true
+    define_individual_user_group: true
     users:
       - name: Ansible Test User5
         username: ansibletestuser5
