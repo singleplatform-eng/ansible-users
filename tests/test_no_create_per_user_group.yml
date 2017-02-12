@@ -3,6 +3,7 @@
 - hosts: localhost
   remote_user: root
   vars:
+    users_create_per_user_group: false
     groups_to_create:
       - name: ansibletestgroup1
         gid: 4001
