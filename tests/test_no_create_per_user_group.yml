@@ -11,6 +11,7 @@
       - name: Ansible Test User3
         username: ansibletestuser3
         uid: 2224
+        group: 4001
         groups: [users, bin]
         shell: /bin/sh
         profile: |
