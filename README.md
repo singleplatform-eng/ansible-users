@@ -15,6 +15,9 @@ Role to manage users on a system.
   specified for the user.
 * users_create_homedirs (default: true) - create home directories for new
   users. Set this to false is you manage home directories separately.
+* define_individual_user_group (default: false) - if define_individual_user_group
+  is set then each user created has to have a group attribute which lists the 
+  users primary group
 
 ## Creating users
 
@@ -34,6 +37,7 @@ The following attributes are required for each user:
 * password - If a hash is provided then that will be used, but otherwise the
   account will be locked
 * groups - a list of supplementary groups for the user.
+* group - used to specify the primary group if define_individual_user_group is set
 * profile - a string block for setting custom shell profiles
 * ssh-key - This should be a list of ssh keys for the user. Each ssh key
   should be included directly and should have no newlines.
