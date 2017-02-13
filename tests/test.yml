@@ -52,6 +52,10 @@
       - name: Ansible Test User3
         username: ansibletestuser3
         uid: 2224
+<<<<<<< HEAD
+=======
+        group: ansibletestgroup1
+>>>>>>> b10a464ea26526c059d8280e14f2a3b0d313b451
         groups: [users, bin]
         shell: /bin/sh
         profile: |
