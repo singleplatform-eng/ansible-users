@@ -10,7 +10,8 @@ Role to manage users on a system.
   create a group with the same username and make that the user's primary
   group.
 * users_group (default: users) - if users_create_per_user_group is _not_ set,
-  then this is the primary group for all created users.
+  and main_group is _not_ set per user, then this is the primary group for all
+  created users.
 * users_default_shell (default: /bin/bash) - the default shell if none is
   specified for the user.
 * users_create_homedirs (default: true) - create home directories for new
@@ -43,6 +44,9 @@ In addition, the following items are optional for each user:
 * shell - The user's shell. This defaults to /bin/bash. The default is
   configurable using the users_default_shell variable if you want to give all
   users the same shell, but it is different than /bin/bash.
+* main_group - If provided, this will be the primary group for the user.
+* force_passwd_update - Boolean value, if true, this will cause the password
+  hash provided to overwrite existing ones, not just on account creation.
 
 Example:
 

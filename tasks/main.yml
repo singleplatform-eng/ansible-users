@@ -8,13 +8,13 @@
   group: name="{{item.username}}"
          gid="{{item.gid if item.gid is defined else item.uid}}"
   with_items: "{{users}}"
-  when: users_create_per_user_group
+  when: users_create_per_user_group and 'main_group' not in item
   tags: ['users','configuration']
 
 - name: User creation
   user:
     name: "{{item.username}}"
-    group: "{{item.username if users_create_per_user_group else users_group}}"
+    group: "{{item.username if users_create_per_user_group else (item.main_group if item.main_group is defined else users_group)}}"
     # empty string removes user from all secondary groups
     groups: "{{item.groups | join(',') if 'groups' in item else ''}}"
     shell: "{{item.shell if item.shell is defined else users_default_shell}}"
@@ -23,6 +23,7 @@
     uid: "{{item.uid}}"
     home: "{{ item.home | default('/home/' + item.username) }}"
     createhome: "{{'yes' if users_create_homedirs else 'no'}}"
+    update_password: "{{ 'always' if (item.force_passwd_update is defined and item.force_passwd_update) else 'on_create' }}"
   with_items: "{{users}}"
   tags: ['users','configuration']
 
@@ -41,7 +42,7 @@
     block: "{{item.profile}}"
     dest: "{{ item.home | default('/home/' + item.username) }}/.profile"
     owner: "{{item.username}}"
-    group: "{{item.username if users_create_per_user_group else users_group}}"
+    group: "{{item.username if users_create_per_user_group else (item.main_group if item.main_group is defined else users_group)}}"
     mode: 0644
     create: true
   when: users_create_homedirs and item.profile is defined
