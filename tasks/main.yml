@@ -8,7 +8,7 @@
   group: name="{{item.username}}"
          gid="{{item.gid if item.gid is defined else item.uid}}"
   with_items: "{{users}}"
-  when: 'group' not in item and users_create_per_user_group
+  when: "'group' not in item and users_create_per_user_group"
   tags: ['users','configuration']
 
 - name: User creation
