@@ -33,6 +33,7 @@ The following attributes are required for each user:
   uid will be used
 * password - If a hash is provided then that will be used, but otherwise the
   account will be locked
+* group - optional primary group override
 * groups - a list of supplementary groups for the user.
 * profile - a string block for setting custom shell profiles
 * ssh-key - This should be a list of ssh keys for the user. Each ssh key
