@@ -36,8 +36,9 @@ The following attributes are required for each user:
 * group - optional primary group override
 * groups - a list of supplementary groups for the user.
 * profile - a string block for setting custom shell profiles
-* ssh-key - This should be a list of ssh keys for the user. Each ssh key
+* ssh_key - This should be a list of ssh keys for the user. Each ssh key
   should be included directly and should have no newlines.
+* generate_ssh_key - Whether to generate a SSH key for the user (optional, defaults to no).
 
 In addition, the following items are optional for each user:
 
