@@ -50,7 +50,11 @@
   with_items: "{{users}}"
 
 - name: Deleted user removal
-  user: name="{{item.username}}" state=absent
+  user:
+    name: "{{item.username}}"
+    state: absent
+    remove: "{{item.remove | default(omit)}}"
+    force: "{{item.force | default(omit)}}"
   with_items: "{{users_deleted}}"
   tags: ['users','configuration']
 
