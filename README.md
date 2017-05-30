@@ -78,3 +78,12 @@ in the system, and these will be removed on the next ansible run. The format
 is the same as for users to add, but the only required field is `username`.
 However, it is recommended that you also keep the `uid` field for reference so
 that numeric user ids are not accidentally reused.
+
+You can optionally choose to remove the user's home directory and mail spool with
+the `remove` parameter, and force removal of files with the `force` parameter.
+
+    users_deleted:
+      - username: bar
+        uid: 1002
+        remove: yes
+        force: yes
