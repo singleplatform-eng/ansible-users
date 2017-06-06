@@ -10,6 +10,7 @@
   with_items: "{{users}}"
   when: "'group' not in item and users_create_per_user_group"
   tags: ['users','configuration']
+  no_log: yes
 
 - name: User creation
   user:
@@ -27,6 +28,7 @@
     update_password: "{{item.update_password | default(omit)}}"
   with_items: "{{users}}"
   tags: ['users','configuration']
+  no_log: yes
 
 - name: SSH keys
   authorized_key:
@@ -37,6 +39,7 @@
     - "{{users}}"
     - ssh_key
   tags: ['users','configuration']
+  no_log: yes
 
 - name: Setup user profiles
   blockinfile:
