@@ -27,7 +27,7 @@ The following attributes are required for each user:
 * username - The user's username.
 * name - The full name of the user (gecos field)
 * home - the home directory of the user to create (optional, defaults to /home/username)
-* uid - The numeric user id for the user. This is required for uid consistency
+* uid - The numeric user id for the user (optional). This is required for uid consistency
   across systems.
 * gid - The numeric group id for the group (optional). Otherwise, the
   uid will be used
@@ -39,7 +39,7 @@ The following attributes are required for each user:
 * group - optional primary group override
 * groups - a list of supplementary groups for the user.
 * profile - a string block for setting custom shell profiles
-* ssh_key - This should be a list of ssh keys for the user. Each ssh key
+* ssh_key - This should be a list of ssh keys for the user (optional). Each ssh key
   should be included directly and should have no newlines.
 * generate_ssh_key - Whether to generate a SSH key for the user (optional, defaults to no).
 
