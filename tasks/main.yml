@@ -6,7 +6,7 @@
 
 - name: Per-user group creation
   group: name="{{item.username}}"
-         gid="{{item.gid if item.gid is defined else item.uid}}"
+         gid="{{item.gid | default(item.uid) | default(omit)}}"
   with_items: "{{users}}"
   when: "'group' not in item and users_create_per_user_group"
   tags: ['users','configuration']
@@ -20,7 +20,7 @@
     shell: "{{item.shell if item.shell is defined else users_default_shell}}"
     password: "{{item.password if item.password is defined else '!'}}"
     comment: "{{item.name if item.name is defined else ''}}"
-    uid: "{{item.uid}}"
+    uid: "{{item.uid | default(omit)}}"
     home: "{{ item.home | default('/home/' + item.username) }}"
     createhome: "{{'yes' if users_create_homedirs else 'no'}}"
     generate_ssh_key: "{{ item.generate_ssh_key | default(omit) }}"
@@ -36,6 +36,7 @@
   with_subelements:
     - "{{users}}"
     - ssh_key
+    - skip_missing: yes
   tags: ['users','configuration']
 
 - name: Setup user profiles
