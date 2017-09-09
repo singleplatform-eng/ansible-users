@@ -38,6 +38,7 @@ The following attributes are required for each user:
   - 'on_create' will only set the password for newly created users.
 * group - optional primary group override
 * groups - a list of supplementary groups for the user.
+* append - if yes, will only add groups, not set them to just the list in groups (optional).
 * profile - a string block for setting custom shell profiles
 * ssh_key - This should be a list of ssh keys for the user (optional). Each ssh key
   should be included directly and should have no newlines.
