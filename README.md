@@ -14,7 +14,7 @@ Role to manage users on a system.
 * users_default_shell (default: /bin/bash) - the default shell if none is
   specified for the user.
 * users_create_homedirs (default: true) - create home directories for new
-  users. Set this to false is you manage home directories separately.
+  users. Set this to false if you manage home directories separately.
 
 ## Creating users
 
@@ -25,21 +25,21 @@ users to be on certain machines.
 The following attributes are required for each user:
 
 * username - The user's username.
-* name - The full name of the user (gecos field)
-* home - the home directory of the user to create (optional, defaults to /home/username)
+* name - The full name of the user (gecos field).
+* home - The home directory of the user to create (optional, defaults to /home/username).
 * uid - The numeric user id for the user (optional). This is required for uid consistency
   across systems.
 * gid - The numeric group id for the group (optional). Otherwise, the
-  uid will be used
+  uid will be used.
 * password - If a hash is provided then that will be used, but otherwise the
-  account will be locked
+  account will be locked.
 * update_password - This can be either 'always' or 'on_create'
   - 'always' will update passwords if they differ. (default)
   - 'on_create' will only set the password for newly created users.
-* group - optional primary group override
-* groups - a list of supplementary groups for the user.
-* profile - a string block for setting custom shell profiles
-* ssh_key - This should be a list of ssh keys for the user (optional). Each ssh key
+* group - Optional primary group override.
+* groups - A list of supplementary groups for the user.
+* profile - A string block for setting custom shell profiles
+* ssh_key - This should be a list of SSH keys for the user (optional). Each SSH key
   should be included directly and should have no newlines.
 * generate_ssh_key - Whether to generate a SSH key for the user (optional, defaults to no).
 
