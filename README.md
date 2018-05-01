@@ -40,8 +40,7 @@ The following attributes are required for each user:
 * groups - A list of supplementary groups for the user.
 * append - If yes, will only add groups, not set them to just the list in groups (optional).
 * profile - A string block for setting custom shell profiles.
-* ssh_key - This should be a list of SSH keys for the user (optional). Each SSH key
-  should be included directly and should have no newlines.
+* ssh_key - This should be a list of SSH keys for the user (optional). Each SSH key should have no newlines. The source of ssh key can be the file system, github url e.g. http://github.com/username.keys or a string directly in the file.
 * generate_ssh_key - Whether to generate a SSH key for the user (optional, defaults to no).
 
 In addition, the following items are optional for each user:
