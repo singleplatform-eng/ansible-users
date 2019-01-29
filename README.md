@@ -15,6 +15,8 @@ Role to manage users on a system.
   specified for the user.
 * users_create_homedirs (default: true) - create home directories for new
   users. Set this to false if you manage home directories separately.
+* authorized_keys_file (default: .ssh/authorized_keys) - Set this if the
+  ssh server is configured to use a non standard authorized keys file.
 
 ## Creating users
 
