@@ -2,14 +2,14 @@
 - name: Creating groups
   group: name="{{item.name}}" gid="{{item.gid | default(omit)}}"
   with_items: "{{groups_to_create}}"
-  tags: ['users','groups','configuration']
+  tags: ["users", "groups", "configuration"]
 
 - name: Per-user group creation
   group: name="{{item.username}}"
          gid="{{item.gid | default(item.uid) | default(omit)}}"
   with_items: "{{users}}"
   when: "'group' not in item and users_create_per_user_group"
-  tags: ['users','configuration']
+  tags: ["users", "configuration"]
 
 - name: User creation
   user:
@@ -27,7 +27,7 @@
     generate_ssh_key: "{{ item.generate_ssh_key | default(omit) }}"
     update_password: "{{item.update_password | default(omit)}}"
   with_items: "{{users}}"
-  tags: ['users','configuration']
+  tags: ["users", "configuration"]
 
 - name: SSH keys
   authorized_key:
@@ -38,7 +38,7 @@
     - "{{users}}"
     - ssh_key
     - skip_missing: yes
-  tags: ['users','configuration']
+  tags: ["users", "configuration"]
 
 - name: Setup user profiles
   blockinfile:
@@ -58,10 +58,10 @@
     remove: "{{item.remove | default(omit)}}"
     force: "{{item.force | default(omit)}}"
   with_items: "{{users_deleted}}"
-  tags: ['users','configuration']
+  tags: ["users", "configuration"]
 
 - name: Deleted per-user group removal
   group: name="{{item.username}}" state=absent
   with_items: "{{users_deleted}}"
   when: users_create_per_user_group
-  tags: ['users','configuration']
+  tags: ["users", "configuration"]
