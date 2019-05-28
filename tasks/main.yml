@@ -63,5 +63,5 @@
 - name: Deleted per-user group removal
   group: name="{{item.username}}" state=absent
   with_items: "{{users_deleted}}"
-  when: users_create_per_user_group
+  when: users_create_per_user_group | bool
   tags: ['users','configuration']
