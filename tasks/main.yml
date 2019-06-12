@@ -1,6 +1,9 @@
 ---
 - name: Creating groups
-  group: name="{{item.name}}" gid="{{item.gid | default(omit)}}"
+  group:
+    name: "{{item.name}}"
+    gid: "{{item.gid | default(omit)}}"
+    system: "{{item.system | default(no)}}"
   with_items: "{{groups_to_create}}"
   tags: ['users','groups','configuration']
 
