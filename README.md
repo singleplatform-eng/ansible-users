@@ -29,6 +29,9 @@ The following attributes are required for each user:
 * username - The user's username.
 * name - The full name of the user (gecos field).
 * home - The home directory of the user to create (optional, defaults to /home/username).
+* home_owner - The home directory owner(optional)
+* home_group - The home directory group(optional)
+* home_mode - The home directory mode(optional)
 * uid - The numeric user id for the user (optional). This is required for uid consistency
   across systems.
 * gid - The numeric group id for the group (optional). Otherwise, the
