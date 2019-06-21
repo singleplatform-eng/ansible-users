@@ -14,11 +14,11 @@ script:
   - ansible-playbook -i localhost, tests/test.yml --syntax-check
 
   # Run test.yml
-  - ansible-playbook -i localhost, --connection=local --sudo tests/test.yml
+  - ansible-playbook -i localhost, --connection=local -b tests/test.yml
 
   # Run the role/playbook again, checking to make sure it's idempotent.
   - >
-    ansible-playbook -i localhost, --connection=local --sudo tests/test.yml
+    ansible-playbook -i localhost, --connection=local -b tests/test.yml
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
