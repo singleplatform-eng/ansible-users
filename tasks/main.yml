@@ -26,7 +26,7 @@
     comment: "{{ item.name if item.name is defined else '' }}"
     uid: "{{ item.uid | default(omit) }}"
     home: "{{ item.home | default('/home/' + item.username) }}"
-    createhome: "{{ 'yes' if users_create_homedirs else 'no' }}"
+    createhome: "{{ item.create_home | default('yes' if users_create_homedirs else 'no') }}"
     generate_ssh_key: "{{ item.generate_ssh_key | default(omit) }}"
     update_password: "{{ item.update_password | default(omit) }}"
   with_items: "{{ users }}"
