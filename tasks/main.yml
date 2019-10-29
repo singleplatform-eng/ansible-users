@@ -3,6 +3,7 @@
   group:
     name: "{{ item.name }}"
     gid: "{{ item.gid | default(omit) }}"
+    system: "{{ item.system | default(omit) }}"
   with_items: "{{ groups_to_create }}"
   tags: ["users", "groups", "configuration"]
 
@@ -27,6 +28,7 @@
     uid: "{{ item.uid | default(omit) }}"
     home: "{{ item.home | default('/home/' + item.username) }}"
     createhome: "{{ 'yes' if users_create_homedirs else 'no' }}"
+    system: "{{ item.system | default(omit) }}"
     generate_ssh_key: "{{ item.generate_ssh_key | default(omit) }}"
     update_password: "{{ item.update_password | default(omit) }}"
   with_items: "{{ users }}"
