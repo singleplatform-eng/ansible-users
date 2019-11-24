@@ -1,5 +1,7 @@
 ---
 - name: Creating groups
+  become: true
+  become_user: root
   group:
     name: "{{ item.name }}"
     gid: "{{ item.gid | default(omit) }}"
@@ -7,6 +9,8 @@
   tags: ["users", "groups", "configuration"]
 
 - name: Per-user group creation
+  become: true
+  become_user: root
   group:
     name: "{{ item.username }}"
     gid: "{{ item.gid | default(item.uid) | default(omit) }}"
@@ -15,6 +19,8 @@
   tags: ["users", "configuration"]
 
 - name: User creation
+  become: true
+  become_user: root
   user:
     name: "{{ item.username }}"
     group: "{{ item.group | default(item.username if users_create_per_user_group else users_group) }}"
@@ -55,6 +61,8 @@
   with_items: "{{ users }}"
 
 - name: Deleted user removal
+  become: true
+  become_user: root
   user:
     name: "{{ item.username }}"
     state: absent
@@ -64,6 +72,8 @@
   tags: ["users", "configuration"]
 
 - name: Deleted per-user group removal
+  become: true
+  become_user: root
   group:
     name: "{{ item.username }}"
     state: absent
