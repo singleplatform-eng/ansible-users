@@ -37,6 +37,7 @@
     user: "{{ item.0.username }}"
     key: "{{ item.1 }}"
     path: "{{ item.0.home | default('/home/' + item.0.username) }}/{{ authorized_keys_file }}"
+    exclusive: yes
   with_subelements:
     - "{{ users }}"
     - ssh_key
