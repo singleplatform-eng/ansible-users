@@ -23,6 +23,7 @@
     append: "{{ item.append | default(omit) }}"
     shell: "{{ item.shell if item.shell is defined else users_default_shell }}"
     password: "{{ item.password if item.password is defined else '!' }}"
+    password_lock: "{{ item.password_lock if item.password_lock is defined else false }}"
     comment: "{{ item.name if item.name is defined else '' }}"
     uid: "{{ item.uid | default(omit) }}"
     home: "{{ item.home | default('/home/' + item.username) }}"
