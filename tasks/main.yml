@@ -34,13 +34,11 @@
 
 - name: SSH keys
   authorized_key:
-    user: "{{ item.0.username }}"
-    key: "{{ item.1 }}"
-    path: "{{ item.0.home | default('/home/' + item.0.username) }}/{{ authorized_keys_file }}"
-  with_subelements:
-    - "{{ users }}"
-    - ssh_key
-    - skip_missing: yes
+    user: "{{ item.username }}"
+    key: "{{ item.ssh_key | join('\n') }}"
+    path: "{{ item.home | default('/home/' + item.username) }}/{{ authorized_keys_file }}"
+    exclusive: "{{ item.ssh_key_exclusive | default('yes' if users_ssh_key_exclusive else 'no')}}"
+  with_items: "{{users}}"
   tags: ["users", "configuration"]
 
 - name: Setup user profiles

@@ -15,6 +15,8 @@ Role to manage users on a system.
   specified for the user.
 * users_create_homedirs (default: true) - create home directories for new
   users. Set this to false if you manage home directories separately.
+* users_ssh_key_exclusive (default: false) - Whether to remove all other
+  non-specified keys from the authorized_keys file.
 * authorized_keys_file (default: .ssh/authorized_keys) - Set this if the
   ssh server is configured to use a non standard authorized keys file.
 
@@ -51,6 +53,8 @@ In addition, the following items are optional for each user:
 * shell - The user's shell. This defaults to /bin/bash. The default is
   configurable using the users_default_shell variable if you want to give all
   users the same shell, but it is different than /bin/bash.
+* ssh_key_exclusive - Whether to remove all other non-specified keys from
+  the authorized_keys file (defaults to users_ssh_key_exclusive).
 
 Example:
 
