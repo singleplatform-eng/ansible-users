@@ -29,6 +29,7 @@
     createhome: "{{ 'yes' if users_create_homedirs else 'no' }}"
     generate_ssh_key: "{{ item.generate_ssh_key | default(omit) }}"
     update_password: "{{ item.update_password | default(omit) }}"
+    expires: "{{ item.expires | default(omit) }}"
   with_items: "{{ users }}"
   tags: ["users", "configuration"]
 

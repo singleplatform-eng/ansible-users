@@ -38,6 +38,10 @@ The following attributes are required for each user:
 * update_password - This can be either 'always' or 'on_create'
   - 'always' will update passwords if they differ. (default)
   - 'on_create' will only set the password for newly created users.
+* expires - Optional expiry time for the user in epoch, it will be ignored on
+  platforms that do not support this. Since Ansible 2.6 you can remove the
+  expiry time by specifying a negative value. Currently supported on GNU/Linux
+  and FreeBSD.
 * group - Optional primary group override.
 * groups - A list of supplementary groups for the user.
 * append - If yes, will only add groups, not set them to just the list in groups (optional).
